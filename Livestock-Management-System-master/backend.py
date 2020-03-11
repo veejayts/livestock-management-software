@@ -52,13 +52,12 @@ if not (os.path.isfile('data.db')):
         conn.commit()
 
         values = [
-            1, 'some', date(2001, 12, 21), '0', '0', 10, date(
-                2001, 12, 21), 10, 5, 5, 1
+            1, 'some', date(2001, 12, 21), '0', '0', 10, 0, 0, 0, 1
         ]
 
         for i in range(0, 50):
             c.execute(
-                "INSERT INTO MasterTable(goat_no, breed, date_of_birth, gender, pregnant, weight, date_of_delivery, no_of_kids, no_of_male_kids, no_of_female_kids, mortality) values(?,?,?,?,?,?,?,?,?,?,?)", values)
+                "INSERT INTO MasterTable(goat_no, breed, date_of_birth, gender, pregnant, weight, no_of_kids, no_of_male_kids, no_of_female_kids, mortality) values(?,?,?,?,?,?,?,?,?,?)", values)
             values[0] += 1
             conn.commit()
 
@@ -158,6 +157,8 @@ class DataBase:
         date_of_delivery = str(datetime.date(datetime.now()) + timedelta(days=150))
         if goatValues['pregnant'] == 1:
             c.execute('UPDATE MasterTable SET pregnant=:pregnant, date_of_delivery=:date_of_delivery WHERE goat_no=:goat_id', {'pregnant': goatValues['pregnant'], 'date_of_delivery': date_of_delivery, 'goat_id': goatValues['goat_id']})
+        elif goatValues['pregnant'] == 0:
+            c.execute('UPDATE MasterTable SET pregnant=:pregnant, date_of_delivery=\'None\' WHERE goat_no=:goat_id', {'pregnant': goatValues['pregnant'], 'goat_id': goatValues['goat_id']})
 
         conn.commit()
 
@@ -201,6 +202,17 @@ class DataBase:
         c.execute('SELECT v1, v2, v3, v4, v5, v6 FROM MasterTable WHERE goat_no=:goat_id', {'goat_id': goat_no})
         res = c.fetchall()
         return res[0]
+    
+    def getDeliveryDates(self):
+        c.execute('SELECT goat_no, date_of_delivery FROM MasterTable')
+        res = c.fetchall()
+        dates = list()
+        for rec in res:
+            if rec[1] != None:
+                dates.append(rec)
+        dates.sort(key=lambda x: x[1], reverse=True)
+        return dates
+
 
     # For View goat
     def getKidsTableData(self, goat_no):

@@ -473,7 +473,7 @@ class Toplevel1:
         self.Radiobutton2.configure(highlightcolor="black")
         self.Radiobutton2.configure(justify='left')
         self.Radiobutton2.configure(text='''NO''')
-        self.Radiobutton1.configure(value=0)
+        self.Radiobutton2.configure(value=0)
         self.Radiobutton2.configure(variable=self.isPregnant)
 
         self.isAlive = IntVar()
@@ -595,7 +595,7 @@ class Toplevel1:
 
         # Get breed
         breed = self.Text02.get()
-
+        
         # Get DOB
         dob = self.Text03.get_date()
 
