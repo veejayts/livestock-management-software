@@ -220,7 +220,7 @@ class Toplevel1:
         self.Text1_15.configure(selectforeground="black")
         self.Text1_15.configure(wrap="word")
 
-        self.Text1_15.insert(END, self.goatData[12])
+        self.Text1_15.insert(END, self.goatData[11])
 
         self.Text1_16 = tk.Text(top)
         self.Text1_16.place(relx=0.159, rely=0.583, relheight=0.036
@@ -235,7 +235,7 @@ class Toplevel1:
         self.Text1_16.configure(selectforeground="black")
         self.Text1_16.configure(wrap="word")
 
-        self.Text1_16.insert(END, self.goatData[13])
+        self.Text1_16.insert(END, self.goatData[12])
 
         self.Text1_17 = tk.Text(top)
         self.Text1_17.place(relx=0.159, rely=0.659, relheight=0.036
@@ -250,7 +250,7 @@ class Toplevel1:
         self.Text1_17.configure(selectforeground="black")
         self.Text1_17.configure(wrap="word")
 
-        self.Text1_17.insert(END, self.goatData[14])
+        self.Text1_17.insert(END, self.goatData[13])
 
         self.Text1_18 = tk.Text(top)
         self.Text1_18.place(relx=0.159, rely=0.734, relheight=0.036
@@ -265,7 +265,7 @@ class Toplevel1:
         self.Text1_18.configure(selectforeground="black")
         self.Text1_18.configure(wrap="word")
 
-        self.Text1_18.insert(END, self.goatData[15])
+        self.Text1_18.insert(END, self.goatData[14])
 
         self.Text1_19 = tk.Text(top)
         self.Text1_19.place(relx=0.159, rely=0.792, relheight=0.036
@@ -280,7 +280,7 @@ class Toplevel1:
         self.Text1_19.configure(selectforeground="black")
         self.Text1_19.configure(wrap="word")
 
-        self.Text1_19.insert(END, self.goatData[16])
+        self.Text1_19.insert(END, self.goatData[15])
 
         self.Text1_20 = tk.Text(top)
         self.Text1_20.place(relx=0.159, rely=0.868, relheight=0.036
@@ -295,7 +295,7 @@ class Toplevel1:
         self.Text1_20.configure(selectforeground="black")
         self.Text1_20.configure(wrap="word")
 
-        self.Text1_20.insert(END, self.goatData[17])
+        self.Text1_20.insert(END, self.goatData[16])
 
         self.Canvas1 = tk.Text(top)
         self.Canvas1.place(relx=0.159, rely=0.927, relheight=0.049
@@ -366,16 +366,17 @@ class Toplevel1:
         self.Frame3.configure(background="#d9d9d9")
         
         self.tree3 = ttk.Treeview(self.Frame3)
+        self.tree3.place(relx=0.00,rely=0.00,height=300,width=310)
         self.tree3["columns"] = ("#0", "#1", "#2", "#3")
-        self.tree3.column("#0", width=50,stretch=True)
-        self.tree3.column("#1", width=80,stretch=True)
-        self.tree3.column("#2", width=80,stretch=True)
-        self.tree3.column("#3", width=80,stretch=True)
+        self.tree3.column("#0", width=50,stretch=True,anchor='center')
+        self.tree3.column("#1", width=80,stretch=True,anchor='center')
+        self.tree3.column("#2", width=80,stretch=True,anchor='center')
+        self.tree3.column("#3", width=80,stretch=True,anchor='center')
         self.tree3.heading("#0", text="S.NO")
         self.tree3.heading("#1", text="MOTHER ID")
         self.tree3.heading("#2", text="KID ID")
         self.tree3.heading("#3", text="GENDER")
-        self.tree3.pack(fill='y')
+        
 
 
         self.Label2_1 = tk.Label(top)
@@ -580,7 +581,7 @@ class Toplevel1:
         widget5.place_forget()
         widget6.place_forget()
         widget7.place_forget()
-
+     
 
 if __name__ == '__main__':
     vp_start_gui()
