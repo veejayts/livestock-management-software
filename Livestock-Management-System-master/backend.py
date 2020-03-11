@@ -324,7 +324,7 @@ class DataBase:
         # ------------------------------------------------------------------------------------------------#
         # Code works for kid and adult male, kid female goats. It DOES NOT work for adult female goat #
         # ------------------------------------------------------------------------------------------------#
-        c.execute('SELECT goat_no, breed, sum(weight), gender, CAST((julianday(:curdate) - julianday(date_of_birth)) AS INT) AS day FROM MasterTable GROUP BY breed, gender HAVING day > 365', {'curdate': datetime.date(datetime.now())})
+        c.execute('SELECT breed, sum(weight), gender FROM MasterTable GROUP BY breed, gender HAVING (julianday(:curdate) - julianday(date_of_birth)) > 365 AND gender = 1 OR gender = 0', {'curdate': datetime.date(datetime.now())})
         print(c.fetchall())
-        c.execute('SELECT goat_no, breed, sum(weight), gender, CAST((julianday(:curdate) - julianday(date_of_birth)) AS INT) AS day FROM MasterTable GROUP BY breed, gender HAVING day < 365', {'curdate': datetime.date(datetime.now())})
+        c.execute('SELECT breed, sum(weight), gender FROM MasterTable GROUP BY breed, gender HAVING (julianday(:curdate) - julianday(date_of_birth)) < 365', {'curdate': datetime.date(datetime.now())})
         print(c.fetchall())
