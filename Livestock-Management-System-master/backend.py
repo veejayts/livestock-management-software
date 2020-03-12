@@ -157,9 +157,7 @@ class DataBase:
         date_of_delivery = str(datetime.date(datetime.now()) + timedelta(days=150))
         if goatValues['pregnant'] == 1:
             c.execute('UPDATE MasterTable SET pregnant=:pregnant, date_of_delivery=:date_of_delivery WHERE goat_no=:goat_id', {'pregnant': goatValues['pregnant'], 'date_of_delivery': date_of_delivery, 'goat_id': goatValues['goat_id']})
-        elif goatValues['pregnant'] == 0:
-            c.execute('UPDATE MasterTable SET pregnant=:pregnant, date_of_delivery=\'None\' WHERE goat_no=:goat_id', {'pregnant': goatValues['pregnant'], 'goat_id': goatValues['goat_id']})
-
+        
         conn.commit()
 
         if isWeightUpdated:
@@ -241,7 +239,7 @@ class DataBase:
         return res[0][0]
     
     def deleteLabourRecord(self, labourValues):
-        c.execute('DELETE FROM Labour WHERE category=:category AND salary=:salary AND count=:count', labourValues)
+        c.execute('DELETE FROM Labour WHERE category=:category AND salary=:salary AND count=:count')
         conn.commit()
 
     # Feed Table
@@ -303,12 +301,33 @@ class DataBase:
         return res
 
     def deleteMiscRecord(self, miscValues):
-        c.execute('DELETE FROM Misc WHERE purchase_date=:purchase_date AND details=:details AND cost=:cost')
+        c.execute('DELETE FROM Misc WHERE purchase_date=:purchase_date AND details=:details AND cost=:cost', miscValues)
         conn.commit()
-    
+
     # Networth Table
     def getNetworthData(self):
+        # Get distinct breeds
+        breeds = list()
+        c.execute('SELECT DISTINCT breed FROM MasterTable')
+        for breed in c.fetchall():
+            if breed != None:
+                breeds.append(breed[0])
+    
         c.execute('SELECT breed, sum(weight), gender, \'adult\' FROM MasterTable WHERE (julianday(:curdate) - julianday(date_of_birth)) > 365 GROUP BY breed, gender ', {'curdate': datetime.date(datetime.now())})
-        print(c.fetchall())
+        adultRes = c.fetchall()
+
         c.execute('SELECT breed, sum(weight), gender, \'kid\' FROM MasterTable WHERE (julianday(:curdate) - julianday(date_of_birth)) < 365 GROUP BY breed, gender', {'curdate': datetime.date(datetime.now())})
-        print(c.fetchall())
+        kidRes = c.fetchall()
+
+        final = dict()
+
+        for breed in breeds:
+            final[breed] = list()
+            for adult in adultRes:
+                if adult[0] == breed:
+                    final[breed].append(adult)
+            for kid in kidRes:
+                if kid[0] == breed:
+                    final[breed].append(kid)
+
+        return final
