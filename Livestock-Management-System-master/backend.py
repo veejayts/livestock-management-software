@@ -239,7 +239,7 @@ class DataBase:
         return res[0][0]
     
     def deleteLabourRecord(self, labourValues):
-        c.execute('DELETE FROM Labour WHERE category=:category AND salary=:salary AND count=:count')
+        c.execute('DELETE FROM Labour WHERE category=:category AND salary=:salary AND count=:count', labourValues)
         conn.commit()
 
     # Feed Table
