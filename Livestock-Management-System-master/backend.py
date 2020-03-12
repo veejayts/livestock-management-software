@@ -241,7 +241,7 @@ class DataBase:
         return res[0][0]
     
     def deleteLabourRecord(self, labourValues):
-        c.execute('DELETE FROM Labour WHERE category=:category AND salary=:salary AND count=:count')
+        c.execute('DELETE FROM Labour WHERE category=:category AND salary=:salary AND count=:count', labourValues)
         conn.commit()
 
     # Feed Table
@@ -305,26 +305,10 @@ class DataBase:
     def deleteMiscRecord(self, miscValues):
         c.execute('DELETE FROM Misc WHERE purchase_date=:purchase_date AND details=:details AND cost=:cost')
         conn.commit()
-
+    
     # Networth Table
     def getNetworthData(self):
-        # c.execute('SELECT goat_no, breed, SUM(weight) FROM MasterTable GROUP BY(breed) HAVING gender=0 AND breed IN (SELECT breed FROM MasterTable WHERE :curdate - date_of_birth > 1)', {'curdate': datetime.date(datetime.now())})
-        # print(c.fetchall())
-        # c.execute('SELECT goat_no, breed, SUM(weight) FROM MasterTable GROUP BY(breed) HAVING gender=1 AND breed IN (SELECT breed FROM MasterTable WHERE :curdate - date_of_birth > 1)', {'curdate': datetime.date(datetime.now())})
-        # print(c.fetchall())
-        # c.execute('SELECT goat_no, breed, SUM(weight) FROM MasterTable GROUP BY(breed) HAVING gender=0 AND breed IN (SELECT breed FROM MasterTable WHERE :curdate - date_of_birth < 1)', {'curdate': datetime.date(datetime.now())})
-        # print(c.fetchall())
-        # c.execute('SELECT goat_no, breed, SUM(weight) FROM MasterTable GROUP BY(breed) HAVING gender=1 AND breed IN (SELECT breed FROM MasterTable WHERE :curdate - date_of_birth < 1)', {'curdate': datetime.date(datetime.now())})
-        # print(c.fetchall())
-
-        # ------------------------------------------------------------------------------------------------#
-        # To use this function, create an instance of this class in another dummy file and execute this function to see the results easily #
-        # ------------------------------------------------------------------------------------------------#
-        # julianday(:curdate) - julianday(date_of_birth) returns the number of days between the two dates #
-        # ------------------------------------------------------------------------------------------------#
-        # Code works for kid and adult male, kid female goats. It DOES NOT work for adult female goat #
-        # ------------------------------------------------------------------------------------------------#
-        c.execute('SELECT breed, sum(weight), gender FROM MasterTable GROUP BY breed, gender HAVING (julianday(:curdate) - julianday(date_of_birth)) > 365 AND gender = 1 OR gender = 0', {'curdate': datetime.date(datetime.now())})
+        c.execute('SELECT breed, sum(weight), gender, \'adult\' FROM MasterTable WHERE (julianday(:curdate) - julianday(date_of_birth)) > 365 GROUP BY breed, gender ', {'curdate': datetime.date(datetime.now())})
         print(c.fetchall())
-        c.execute('SELECT breed, sum(weight), gender FROM MasterTable GROUP BY breed, gender HAVING (julianday(:curdate) - julianday(date_of_birth)) < 365', {'curdate': datetime.date(datetime.now())})
+        c.execute('SELECT breed, sum(weight), gender, \'kid\' FROM MasterTable WHERE (julianday(:curdate) - julianday(date_of_birth)) < 365 GROUP BY breed, gender', {'curdate': datetime.date(datetime.now())})
         print(c.fetchall())
