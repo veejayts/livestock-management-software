@@ -556,18 +556,17 @@ def displayMasterChart():
 
     root = Tk()
 
-    root.geometry("1500x770+0+0")
+    root.geometry("1500x850+0+0")
     root.minsize(800, 500)
     root.maxsize(1500, 750)
     root.resizable(0, 0)
     root.title("Home")
     root.configure(background="#f3f3f3")
-    root.configure(cursor="watch")
     root.configure(highlightbackground="#d9d9d9")
     root.configure(highlightcolor="#090000")
 
     Frame1 = Frame(root)
-    Frame1.place(relx=0.0, rely=0.05, relheight=1.011, relwidth=1.02)
+    Frame1.place(relx=0.0, rely=0.03, relheight=1.0, relwidth=1.02)
     Frame1.configure(relief='groove')
     Frame1.configure(borderwidth="2")
     Frame1.configure(relief="groove")
@@ -593,7 +592,7 @@ def displayMasterChart():
         menu.add_command(label="View", command=lambda: view.create_Toplevel1(root, row_data))
 
     mc = Multicolumn_Listbox(Frame1, db.getColumnNames(), stripped_rows = ("white","#f2f2f2"), command=on_select, cell_anchor="center", height=700, adjust_heading_to_content=True)
-    mc.interior.pack()
+    mc.interior.place(relx=0.015,rely=0,relheight= 1,relwidth=0.95)
 
     def populateTree():
         for record in db.getGoatRecords():
@@ -604,6 +603,7 @@ def displayMasterChart():
     def refreshPage():
         mc.clear()
         populateTree()
+
 
     Button3 = tk.Button(root)
     Button3.place(relx=0.830, rely=0.00, height=25, width=80)

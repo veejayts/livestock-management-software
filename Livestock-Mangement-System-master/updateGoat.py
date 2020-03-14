@@ -81,8 +81,8 @@ class Toplevel1:
         self.db = DataBase()
 
         # By default self.mortality should be 1
-        self.mortality = 1
-        self.pregnant = 0
+        self.mortality = 'Alive'
+        self.pregnant = 'No'
 
         self.Frame1 = tk.Frame(top)
         self.Frame1.place(relx=0.0, rely=0.0, relheight=1.0, relwidth=1.0)
@@ -542,7 +542,7 @@ class Toplevel1:
 
         # Disable the pregnancy radiobuttons if goat is male
         self.male = self.goatData[3]
-        if self.male == 0:
+        if self.male == 'm':
             self.Radiobutton1.config(state=DISABLED)
             self.Radiobutton2.config(state=DISABLED)
         else:
@@ -564,16 +564,16 @@ class Toplevel1:
         self.Text03.set_date(datetime.strptime(self.goatData[2], '%Y-%m-%d').date())
 
     def setMortality(self, value):
-        self.mortality = value
+        self.mortality = 'Alive' if value == 1 else 'Dead'
 
     def setPregnancy(self, value):
-        self.pregnant = value
+        self.pregnant = 'Yes' if value == 1 else 'No'
 
     def submitData(self):
-        if self.male == 1:
+        if self.male == 'f':
             pregnant = self.pregnant
         else:
-            pregnant = 0
+            pregnant = 'No'
 
         alive = self.mortality
 
@@ -637,6 +637,7 @@ class Toplevel1:
     def vaccinated(self, vacc_no):
         self.db.updateVaccination(vacc_no, self.goatData[0])
         messagebox.showinfo("Update","Vacinnated successfully")
+        w.deiconify()
 
     def hideSoldFrame(self, widget1, widget2):
         widget1.place_forget()

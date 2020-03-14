@@ -9,6 +9,7 @@ from backend import DataBase
 import addGoat_support
 from tkinter import DISABLED, NORMAL
 from tkcalendar import DateEntry
+from datetime import datetime, date
 from tkinter import messagebox
 
 
@@ -87,7 +88,6 @@ class Toplevel1:
         top.resizable(0, 0)
         top.title("New Toplevel")
         top.configure(background="#40e0d0")
-        top.configure(cursor="watch")
         top.configure(highlightbackground="#d9d9d9")
         top.configure(highlightcolor="black")
 
@@ -161,7 +161,6 @@ class Toplevel1:
         self.TEntry1 = ttk.Entry(top)
         self.TEntry1.place(x=250,y=155, height=35, width=140)
         self.TEntry1.configure(takefocus="")
-        self.TEntry1.configure(cursor="watch")
 
         self.breed = tk.Label(top)
         self.breed.place(x=80,y=200, height=35, width=98)
@@ -177,7 +176,6 @@ class Toplevel1:
         self.TEntry1_22 = ttk.Entry(top)
         self.TEntry1_22.place(x=250,y=200,height=35, width=140)
         self.TEntry1_22.configure(takefocus="")
-        self.TEntry1_22.configure(cursor="watch")
 
         self.DOB = tk.Label(top)
         self.DOB.place(x=80,y=245, height=35, width=98)
@@ -208,7 +206,6 @@ class Toplevel1:
         self.TEntry1_24 = ttk.Entry(top)
         self.TEntry1_24.place(x=250,y=335,height=35, width=140)
         self.TEntry1_24.configure(takefocus="")
-        self.TEntry1_24.configure(cursor="watch")
 
         self.weight = tk.Label(top)
         self.weight.place(x=80,y=335, height=35, width=98)
@@ -224,7 +221,6 @@ class Toplevel1:
         self.TEntry1_25 = ttk.Entry(top)
         self.TEntry1_25.place(x=250,y=290,height=35, width=140)
         self.TEntry1_25.configure(takefocus="")
-        self.TEntry1_25.configure(cursor="watch")
 
         self.gender = tk.Label(top)
         self.gender.place(x=80,y=395, height=40, width=98)
@@ -393,14 +389,21 @@ class Toplevel1:
         self.Cancel.configure(pady="0")
         self.Cancel.configure(text='''CANCEL''')
 
+        self.goatDob.set_date(datetime.date(datetime.now()))
+        self.cal1.set_date(datetime.date(datetime.now()))
+        self.cal2.set_date(datetime.date(datetime.now()))
+        self.cal3.set_date(datetime.date(datetime.now()))
+        self.cal4.set_date(datetime.date(datetime.now()))
+        self.cal5.set_date(datetime.date(datetime.now()))
+        self.cal6.set_date(datetime.date(datetime.now()))
+
     def acceptValues(self):
-        # try:
         goat_id = int(self.TEntry1.get())
         g_breed = self.TEntry1_22.get()
         g_dob = self.goatDob.get_date()
         g_weight = int(self.TEntry1_24.get())
         g_motherId = self.TEntry1_25.get()
-        g_gender = int(self.genderVal.get())
+        g_gender = 'm' if int(self.genderVal.get()) == 0 else 'f'
         g_isBornOrBought = self.isBornOrBought.get()
 
         v1Date = self.cal1.get_date()
@@ -412,28 +415,25 @@ class Toplevel1:
 
         # born = 0
 
-        if g_gender == 1 and g_isBornOrBought == 0:
+        if g_gender == 'f' and g_isBornOrBought == 0:
             self.db.insertGoatRecord({'goat_id': goat_id, 'breed': g_breed, 'date_of_birth': g_dob,
-                                'weight': g_weight, 'gender': g_gender, 'pregnant': 0, 'v1': str(v1Date), 'v2': str(v2Date), 'v3': str(v3Date), 'v4': str(v4Date), 'v5': str(v5Date), 'v6': str(v6Date)}, mother_id=g_motherId)
-        elif g_gender == 1 and g_isBornOrBought == 1:
+                                'weight': g_weight, 'gender': g_gender, 'pregnant': 'No'}, mother_id=g_motherId)
+        elif g_gender == 'f' and g_isBornOrBought == 1:
             self.db.insertGoatRecord({'goat_id': goat_id, 'breed': g_breed, 'date_of_birth': g_dob,
-                                'weight': g_weight, 'gender': g_gender, 'pregnant': 0, 'v1': str(v1Date), 'v2': str(v2Date), 'v3': str(v3Date), 'v4': str(v4Date), 'v5': str(v5Date), 'v6': str(v6Date)}, mother_id='null')
-        elif g_gender == 0 and g_isBornOrBought == 0:
+                                'weight': g_weight, 'gender': g_gender, 'pregnant': 'No', 'v1': str(v1Date), 'v2': str(v2Date), 'v3': str(v3Date), 'v4': str(v4Date), 'v5': str(v5Date), 'v6': str(v6Date)}, mother_id='null')
+        elif g_gender == 'm' and g_isBornOrBought == 0:
             self.db.insertGoatRecord({'goat_id': goat_id, 'breed': g_breed, 'date_of_birth': g_dob,
-                                'weight': g_weight, 'gender': g_gender, 'pregnant': 0, 'v1': str(v1Date), 'v2': str(v2Date), 'v3': str(v3Date), 'v4': str(v4Date), 'v5': str(v5Date), 'v6': str(v6Date)}, mother_id=g_motherId)
-        elif g_gender == 0 and g_isBornOrBought == 1:
+                                'weight': g_weight, 'gender': g_gender, 'pregnant': 'No'}, mother_id=g_motherId)
+        elif g_gender == 'm' and g_isBornOrBought == 1:
             self.db.insertGoatRecord({'goat_id': goat_id, 'breed': g_breed, 'date_of_birth': g_dob,
-                                'weight': g_weight, 'gender': g_gender, 'pregnant': 0, 'v1': str(v1Date), 'v2': str(v2Date), 'v3': str(v3Date), 'v4': str(v4Date), 'v5': str(v5Date), 'v6': str(v6Date)}, mother_id='null')
+                                'weight': g_weight, 'gender': g_gender, 'pregnant': 'No', 'v1': str(v1Date), 'v2': str(v2Date), 'v3': str(v3Date), 'v4': str(v4Date), 'v5': str(v5Date), 'v6': str(v6Date)}, mother_id='null')
 
         self.showSuccess()
         
         print({'goat_id': goat_id, 'breed': g_breed, 'date_of_birth': g_dob,
-                                'weight': g_weight, 'gender': g_gender, 'pregnant': 0, 'v1': str(v1Date), 'v2': str(v2Date), 'v3': str(v3Date), 'v4': str(v4Date), 'v5': str(v5Date), 'v6': str(v6Date)})
+                                'weight': g_weight, 'gender': g_gender, 'pregnant': 'No', 'v1': str(v1Date), 'v2': str(v2Date), 'v3': str(v3Date), 'v4': str(v4Date), 'v5': str(v5Date), 'v6': str(v6Date)})
 
         addGoat_support.destroy_window()
-
-        # except: 
-        #     self.errorMsg()
 
     def disableVaccination(self):
         self.TEntry1_25.config(state=NORMAL)  

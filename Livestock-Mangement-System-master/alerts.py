@@ -269,6 +269,8 @@ class Toplevel1:
 
         self.deliveryDates = self.db.getDeliveryDates()
 
+        self.breedReadyGoats = self.db.getBreedReadyGoats()
+
         if self.v1data != None:
             for i in range(len(self.v1data)):
                 self.tree1.insert("", END, text="", values=self.v1data[i])
@@ -290,6 +292,9 @@ class Toplevel1:
         if self.deliveryDates != None:
             for i in range(len(self.deliveryDates)):
                 self.tree7.insert("", END, text="", values=self.deliveryDates[i])
+        if self.breedReadyGoats != None:
+            for i in range(len(self.breedReadyGoats)):
+                self.tree8.insert("", END, text="", values=self.breedReadyGoats[i])
 
 # The following code is added to facilitate the Scrolled widgets you specified.
 class AutoScroll(object):
