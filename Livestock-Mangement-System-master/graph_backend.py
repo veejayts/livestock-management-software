@@ -3,21 +3,18 @@ from backend import DataBase
 from datetime import datetime, datetime
 
 
-
-# dob = df['date_of_birth']
-# db = DataBase()
-# data = db.getWeightRecords(10)
-# df = pd.DataFrame(data)
-# print(type(df[0][0]))
-
 def getData():
 	db = DataBase()
 	data = db.getGoatRecords()
 	dataColumns = db.getColumnNames()
 	df = pd.DataFrame(data,columns=dataColumns)
 
-	breed = df['breed']
-	gender = df['gender']
+	if not df['breed'].empty:
+		breed = df['breed']
+		gender = df['gender']
+	else:
+		breed = ['']
+		gender = ['']
 
 	kidCount = db.getKidCount()
 	maleKidCount = 0
@@ -59,8 +56,8 @@ def getData():
 		maleDeadCount = 0
 		femaleDeadCount = 0
 
-	income = db.getTotalLivestockNetworth()
-	expense = db.getTotalLabourCost()+db.getTotalFeedCost()+db.getTotalHealthExpenditure()+db.getTotalMiscCost()
+	income = db.getTotalIncome()+db.getTotalSoldGoatsRate()
+	expense = db.getTotalLabourCost()+db.getTotalFeedCost()+db.getTotalMiscExpenditure()
 
 	db = None
 	return breed, gender, maleKidCount, femaleKidCount, maleDeadCount, femaleDeadCount, income, expense

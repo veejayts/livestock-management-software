@@ -18,7 +18,7 @@ from backend import DataBase
 from tkinter import messagebox
 import pandas as pd
 from datetime import datetime, datetime
-import xlsxwriter
+import xlsxwriter   
 
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
@@ -62,10 +62,10 @@ class Toplevel1:
 
         top.geometry("1300x760+20+20")
         top.minsize(148, 1)
-        top.maxsize(1924, 1055)
+        top.maxsize(1800, 850)
         top.resizable(1, 1)
-        top.title("New Toplevel")
-        top.configure(background="#d9d9d9")
+        top.title("Finance")
+        top.configure(background="#78909C")
         
         self.db = DataBase()
 
@@ -83,7 +83,19 @@ class Toplevel1:
         self.Frame1.configure(relief='groove')
         self.Frame1.configure(borderwidth="2")
         self.Frame1.configure(relief="groove")
-        self.Frame1.configure(background="#d9d9d9")
+        self.Frame1.configure(background="#78909C")
+
+        self.Button0 = tk.Button(top, command = destroy_Toplevel1)
+        self.Button0.place(x=10, y=8, height=33, width=56)
+        self.Button0.configure(activebackground="#ececec")
+        self.Button0.configure(activeforeground="#000000")
+        self.Button0.configure(background="#d9d9d9")
+        self.Button0.configure(disabledforeground="#a3a3a3")
+        self.Button0.configure(foreground="#000000")
+        self.Button0.configure(highlightbackground="#d9d9d9")
+        self.Button0.configure(highlightcolor="black")
+        self.Button0.configure(pady="0")
+        self.Button0.configure(text='''< Back''')
 
         self.Button1 = tk.Button(top, command =lambda: self.showLivestock(1))
         self.Button1.place(relx=0.538, rely=0.053, height=33, width=56)
@@ -103,7 +115,7 @@ class Toplevel1:
         self.Frame2.configure(relief='groove')
         self.Frame2.configure(borderwidth="2")
         self.Frame2.configure(relief="groove")
-        self.Frame2.configure(background="#d9d9d9")
+        self.Frame2.configure(background="#78909C")
         self.Frame2.configure(highlightbackground="#d9d9d9")
         self.Frame2.configure(highlightcolor="black")
 
@@ -125,7 +137,7 @@ class Toplevel1:
         self.Frame3.configure(relief='groove')
         self.Frame3.configure(borderwidth="2")
         self.Frame3.configure(relief="groove")
-        self.Frame3.configure(background="#d9d9d9")
+        self.Frame3.configure(background="#78909C")
         self.Frame3.configure(highlightbackground="#d9d9d9")
         self.Frame3.configure(highlightcolor="black")
 
@@ -147,11 +159,11 @@ class Toplevel1:
         self.Frame4.configure(relief='groove')
         self.Frame4.configure(borderwidth="2")
         self.Frame4.configure(relief="groove")
-        self.Frame4.configure(background="#d9d9d9")
+        self.Frame4.configure(background="#78909C")
         self.Frame4.configure(highlightbackground="#d9d9d9")
         self.Frame4.configure(highlightcolor="black")
 
-        self.Button4 = tk.Button(top, command =lambda: self.showHealth(1))
+        self.Button4 = tk.Button(top, command =lambda: self.showMisc(1))
         self.Button4.place(relx=0.539, rely=0.605, height=32, width=56)
         self.Button4.configure(activebackground="#ececec")
         self.Button4.configure(activeforeground="#000000")
@@ -169,11 +181,11 @@ class Toplevel1:
         self.Frame5.configure(relief='groove')
         self.Frame5.configure(borderwidth="2")
         self.Frame5.configure(relief="groove")
-        self.Frame5.configure(background="#d9d9d9")
+        self.Frame5.configure(background="#78909C")
         self.Frame5.configure(highlightbackground="#d9d9d9")
         self.Frame5.configure(highlightcolor="black")
 
-        self.Button5 = tk.Button(top, command =lambda: self.showMisc(1))
+        self.Button5 = tk.Button(top, command =lambda: self.showIncome(1))
         self.Button5.place(relx=0.538, rely=0.789, height=32, width=56)
         self.Button5.configure(activebackground="#ececec")
         self.Button5.configure(activeforeground="#000000")
@@ -191,7 +203,7 @@ class Toplevel1:
         self.Frame6.configure(relief='groove')
         self.Frame6.configure(borderwidth="2")
         self.Frame6.configure(relief="groove")
-        self.Frame6.configure(background="#d9d9d9")
+        self.Frame6.configure(background="#78909C")
         self.Frame6.configure(highlightbackground="#d9d9d9")
         self.Frame6.configure(highlightcolor="black")
 
@@ -357,7 +369,7 @@ class Toplevel1:
         self.tree4.heading("#2", text="Category")
         self.tree4.heading("#3", text="Cost")
         self.tree4.pack(fill='y')
-        self.tree4.bind("<<TreeviewSelect>>", self.getHealthData)
+        self.tree4.bind("<<TreeviewSelect>>", self.getMiscData)
 
         self.treeFrame9 = tk.Frame(top)
         self.treeFrame9.place(relx=0.015, rely=0.842, relheight=0.125, relwidth=0.572)
@@ -379,7 +391,7 @@ class Toplevel1:
         self.tree5.heading("#2", text="Details")
         self.tree5.heading("#3", text="Cost")
         self.tree5.pack(fill='y')
-        self.tree5.bind("<<TreeviewSelect>>", self.getMiscData)
+        self.tree5.bind("<<TreeviewSelect>>", self.getIncomeData)
 
         self.Label1 = tk.Label(top)
         self.Label1.place(relx=0.015, rely=0.066, height=26, width=133)
@@ -697,7 +709,7 @@ class Toplevel1:
         self.Cancel3.configure(text='''CANCEL''')
 
         self.Label4 = tk.Label(top)
-        self.Label4.place(relx=0.01, rely=0.618, height=26, width=132)
+        self.Label4.place(relx=0.015, rely=0.618, height=26, width=143)
         self.Label4.configure(activebackground="#f9f9f9")
         self.Label4.configure(activeforeground="black")
         self.Label4.configure(background="#d9d9d9")
@@ -706,15 +718,15 @@ class Toplevel1:
         self.Label4.configure(highlightbackground="#d9d9d9")
         self.Label4.configure(highlightcolor="black")
         self.Label4.configure(font=font9)
-        self.Label4.configure(text='''Health Expenditure''')
+        self.Label4.configure(text='''Miscellaneous Expense''')
 
         self.Label41 = tk.Label(self.Frame4)
-        self.Label41.place(relx=0.35, rely=0.001, height=26, width=133)
+        self.Label41.place(relx=0.35, rely=0.001, height=26, width=143)
         self.Label41.configure(background="#d9d9d9")
         self.Label41.configure(disabledforeground="#a3a3a3")
         self.Label41.configure(foreground="#000000")
         self.Label41.configure(font=font9)
-        self.Label41.configure(text='''Health Expenditure''')
+        self.Label41.configure(text='''Miscellaneous Expense''')
 
         self.Label42 = tk.Label(self.Frame4)
         self.Label42.place(relx=0.1, rely=0.1, height=26, width=133)
@@ -770,7 +782,7 @@ class Toplevel1:
         self.TEntry48.configure(takefocus="")
         self.TEntry48.configure(cursor="watch")
 
-        self.Submit4 = tk.Button(self.Frame4, command = self.acceptHealthExpense)
+        self.Submit4 = tk.Button(self.Frame4, command = self.acceptMiscExpense)
         self.Submit4.place(relx=0.580, rely=0.842, height=30, width=59)
         self.Submit4.configure(activebackground="#ececec")
         self.Submit4.configure(activeforeground="#000000")
@@ -782,7 +794,7 @@ class Toplevel1:
         self.Submit4.configure(pady="0")
         self.Submit4.configure(text='''SUBMIT''')
 
-        self.Delete4 = tk.Button(self.Frame4, command = self.deleteHealth)
+        self.Delete4 = tk.Button(self.Frame4, command = self.deleteMisc)
         self.Delete4.place(relx=0.580, rely=0.842, height=30, width=59)
         self.Delete4.configure(activebackground="#ececec")
         self.Delete4.configure(activeforeground="#000000")
@@ -807,7 +819,7 @@ class Toplevel1:
         self.Cancel4.configure(text='''CANCEL''')
 
         self.Label5 = tk.Label(top)
-        self.Label5.place(relx=0.015, rely=0.803, height=26, width=92)
+        self.Label5.place(relx=0.005, rely=0.803, height=26, width=92)
         self.Label5.configure(activebackground="#f9f9f9")
         self.Label5.configure(activeforeground="black")
         self.Label5.configure(background="#d9d9d9")
@@ -816,7 +828,7 @@ class Toplevel1:
         self.Label5.configure(highlightbackground="#d9d9d9")
         self.Label5.configure(highlightcolor="black")
         self.Label5.configure(font=font9)
-        self.Label5.configure(text='''Miscellaneous''')
+        self.Label5.configure(text='''Income''')
 
         self.Label51 = tk.Label(self.Frame5)
         self.Label51.place(relx=0.35, rely=0.001, height=26, width=133)
@@ -824,7 +836,7 @@ class Toplevel1:
         self.Label51.configure(disabledforeground="#a3a3a3")
         self.Label51.configure(foreground="#000000")
         self.Label51.configure(font=font9)
-        self.Label51.configure(text='''Miscellaneous''')
+        self.Label51.configure(text='''Income''')
 
         self.Label52 = tk.Label(self.Frame5)
         self.Label52.place(relx=0.1, rely=0.1, height=26, width=133)
@@ -879,7 +891,7 @@ class Toplevel1:
         self.TEntry58.place(relx=0.5,rely=0.39, height=35, width=140)
         self.TEntry58.configure(takefocus="")
 
-        self.Submit5 = tk.Button(self.Frame5, command = self.acceptMisc)
+        self.Submit5 = tk.Button(self.Frame5, command = self.acceptIncome)
         self.Submit5.place(relx=0.580, rely=0.842, height=30, width=59)
         self.Submit5.configure(activebackground="#ececec")
         self.Submit5.configure(activeforeground="#000000")
@@ -891,7 +903,7 @@ class Toplevel1:
         self.Submit5.configure(pady="0")
         self.Submit5.configure(text='''SUBMIT''')
 
-        self.Delete5 = tk.Button(self.Frame5, command = self.deleteMisc)
+        self.Delete5 = tk.Button(self.Frame5, command = self.deleteIncome)
         self.Delete5.place(relx=0.580, rely=0.842, height=30, width=59)
         self.Delete5.configure(activebackground="#ececec")
         self.Delete5.configure(activeforeground="#000000")
@@ -919,19 +931,18 @@ class Toplevel1:
         self.populateTree(self.tree2, popData)
         popData = self.db.getFeedData()
         self.populateTree(self.tree3, popData)
-        popData = self.db.getHealthExpenditureData()
+        popData = self.db.getMiscExpenditureData()
         self.populateTree(self.tree4, popData)
-        popData = self.db.getMiscData()
+        popData = self.db.getIncomeData()
         self.populateTree(self.tree5, popData)
         popData = self.db.getLivestockNetworthData()
         self.populateTree(self.tree1, popData)       
 
-        grand_total = (self.db.getTotalLabourCost() * 12) + (self.db.getTotalFeedCost()) + (self.db.getTotalHealthExpenditure()) + (self.db.getTotalMiscCost())
+        grand_total = (self.db.getTotalLabourCost() * 12) + (self.db.getTotalFeedCost()) + (self.db.getTotalMiscExpenditure()) 
 
         self.tree0.insert("", END, text="1", values=("Labour", self.db.getTotalLabourCost() * 12))
         self.tree0.insert("", END, text="2", values=("Feed", self.db.getTotalFeedCost()))
-        self.tree0.insert("", END, text="3", values=("Health Expense", self.db.getTotalHealthExpenditure()))
-        self.tree0.insert("", END, text="4", values=("Miscellaneous", self.db.getTotalMiscCost()))
+        self.tree0.insert("", END, text="3", values=("Miscellaneous Expense", self.db.getTotalMiscExpenditure()))
 
         self.TEntry02.delete(0, END)
         self.TEntry02.insert(END, grand_total)
@@ -992,7 +1003,7 @@ class Toplevel1:
         self.Frame5.place_forget()
         self.Frame6.place_forget()
 
-    def showHealth(self,flag):
+    def showMisc(self,flag):
         if flag:
             self.refresh()
         self.TEntry43.delete(0,END)
@@ -1004,14 +1015,14 @@ class Toplevel1:
         self.Label44.place(relx=0.35, rely=0.2, height=26, width=133)
         self.Submit4.place(relx=0.580, rely=0.842, height=30, width=59)
         self.TEntry43.delete(0, END)
-        self.TEntry43.insert(END, self.db.getTotalHealthExpenditure())
+        self.TEntry43.insert(END, self.db.getTotalMiscExpenditure())
         self.Frame1.place_forget()
         self.Frame2.place_forget()
         self.Frame3.place_forget()
         self.Frame5.place_forget()
         self.Frame6.place_forget()
 
-    def showMisc(self,flag):
+    def showIncome(self,flag):
         if flag:
             self.refresh()
         self.TEntry53.delete(0,END)
@@ -1023,7 +1034,7 @@ class Toplevel1:
         self.Label54.place(relx=0.35, rely=0.2, height=26, width=133)
         self.Submit5.place(relx=0.580, rely=0.842, height=30, width=59)
         self.TEntry53.delete(0, END)
-        self.TEntry53.insert(END, self.db.getTotalMiscCost())
+        self.TEntry53.insert(END, self.db.getTotalIncome())
         self.Frame1.place_forget()
         self.Frame2.place_forget()
         self.Frame3.place_forget()
@@ -1089,8 +1100,8 @@ class Toplevel1:
         self.TEntry310.insert(END,data3['values'][3])
         print(data3)
 
-    def getHealthData(self, event):
-        self.showHealth(0)
+    def getMiscData(self, event):
+        self.showMisc(0)
         self.onselect(self.Label44,self.Submit4,self.DEntry4, self.Delete4)
         data4 = self.tree4.item(self.tree4.selection())
         self.TEntry46.delete(0,END)
@@ -1099,8 +1110,8 @@ class Toplevel1:
         self.TEntry48.insert(END,data4['values'][2])
         print(data4)
 
-    def getMiscData(self, event):
-        self.showMisc(0)
+    def getIncomeData(self, event):
+        self.showIncome(0)
         self.onselect(self.Label54,self.Submit5,self.DEntry5, self.Delete5)
         data5 = self.tree5.item(self.tree5.selection())
         self.TEntry56.delete(0,END)
@@ -1134,25 +1145,24 @@ class Toplevel1:
         self.clearTreeView(self.tree3)
         self.populateTree(self.tree3, feedData)
 
-        # def refreshHealthTree(self):
-        healthExpenseData = self.db.getHealthExpenditureData()
-        self.clearTreeView(self.tree4)
-        self.populateTree(self.tree4, healthExpenseData)
-
         # def refreshMiscTree(self):
-        miscData = self.db.getMiscData()
+        miscExpenseData = self.db.getMiscExpenditureData()
+        self.clearTreeView(self.tree4)
+        self.populateTree(self.tree4, miscExpenseData)
+
+        # def refreshIncomeTree(self):
+        incomeData = self.db.getIncomeData()
         self.clearTreeView(self.tree5)
-        self.populateTree(self.tree5, miscData)
+        self.populateTree(self.tree5, incomeData)
 
         # def grandTotal
-        grand_total = (self.db.getTotalLabourCost() * 12) + (self.db.getTotalFeedCost()) + (self.db.getTotalHealthExpenditure()) + (self.db.getTotalMiscCost())
+        grand_total = (self.db.getTotalLabourCost() * 12) + (self.db.getTotalFeedCost()) + (self.db.getTotalMiscExpenditure()) 
 
         self.clearTreeView(self.tree0)
 
         self.tree0.insert("", END, text="1", values=("Labour", self.db.getTotalLabourCost() * 12))
         self.tree0.insert("", END, text="2", values=("Feed", self.db.getTotalFeedCost()))
-        self.tree0.insert("", END, text="3", values=("Health Expense", self.db.getTotalHealthExpenditure()))
-        self.tree0.insert("", END, text="4", values=("Miscellaneous", self.db.getTotalMiscCost()))
+        self.tree0.insert("", END, text="3", values=("Miscellaneous Expense", self.db.getTotalMiscExpenditure()))
 
         self.TEntry02.delete(0, END)
         self.TEntry02.insert(END, grand_total)
@@ -1194,40 +1204,40 @@ class Toplevel1:
 
         self.Frame3.place_forget()
 
-    def acceptHealthExpense(self):
+    def acceptMiscExpense(self):
         category = self.TEntry46.get()
         cost = self.TEntry48.get()
 
-        healthExpenseData = {'category': category, 'cost': cost}
+        miscExpenseData = {'category': category, 'cost': cost}
 
-        self.db.insertHealthExpenditure(healthExpenseData)
+        self.db.insertMiscExpenditure(miscExpenseData)
 
-        print(healthExpenseData)
-        print('Inserted into HealthExpense successfully')
+        print(miscExpenseData)
+        print('Inserted into Misc Expense successfully')
 
         # Update Total cost after submission
         self.TEntry43.delete(0, END)
-        self.TEntry43.insert(END, self.db.getTotalHealthExpenditure())
+        self.TEntry43.insert(END, self.db.getTotalMiscExpenditure())
 
         # Update Treeview
         self.refresh()
 
         self.Frame4.place_forget()
 
-    def acceptMisc(self):
+    def acceptIncome(self):
         details = self.TEntry56.get()
         cost = self.TEntry58.get()
 
-        miscData = {'details': details, 'cost': cost}
+        incomeData = {'details': details, 'cost': cost}
 
-        self.db.insertMisc(miscData)
+        self.db.insertIncome(incomeData)
 
-        print(miscData)
-        print('Inserted into Misc successfully')
+        print(incomeData)
+        print('Inserted into Income successfully')
 
         # Update Total cost after submission
         self.TEntry53.delete(0, END)
-        self.TEntry53.insert(END, self.db.getTotalMiscCost())
+        self.TEntry53.insert(END, self.db.getTotalIncome())
 
         # Update Treeview
         self.refresh()
@@ -1276,30 +1286,30 @@ class Toplevel1:
         else:
             w.deiconify()
 
-    def deleteHealth(self):
+    def deleteMisc(self):
         answer2=messagebox.askokcancel("Delete","Do you want to delete the entry?")
         if(answer2==True):
             data4 = self.tree4.item(self.tree4.selection())
             purchase_date = data4['values'][0]
             category = data4['values'][1]
             cost = data4['values'][2]
-            healthExpenseData = {'purchase_date': purchase_date,'category': category, 'cost': cost}
-            self.db.deleteHealthExpenditureRecord(healthExpenseData)
+            miscExpenseData = {'purchase_date': purchase_date,'category': category, 'cost': cost}
+            self.db.deleteMiscExpenditureRecord(miscExpenseData)
             self.refresh()
             self.Frame4.place_forget()
             w.deiconify()
         else:
                 w.deiconify()
 
-    def deleteMisc(self):
+    def deleteIncome(self):
         answer3=messagebox.askokcancel("Delete","Do you want to delete the entry?")
         if(answer3==True):
             data5 = self.tree5.item(self.tree5.selection())
             purchase_date = data5['values'][0]
             details = data5['values'][1]
             cost = data5['values'][2]
-            miscData = {'purchase_date': purchase_date,'details': details, 'cost': cost}
-            self.db.deleteMiscRecord(miscData)
+            incomeData = {'purchase_date': purchase_date,'details': details, 'cost': cost}
+            self.db.deleteIncomeRecord(incomeData)
             self.refresh()
             self.Frame5.place_forget()
             w.deiconify()
@@ -1333,26 +1343,29 @@ class Toplevel1:
         feeddf = pd.DataFrame(feeddata,columns= feeddataColumns)
         feeddf.name = 'Feed'
 
-        healthdata = self.db.getHealthRecords()
-        healthdataColumns = self.db.getHealthColumnNames()
-        healthdf = pd.DataFrame(healthdata,columns= healthdataColumns)
-        healthdf.name = 'Health Expenses'
-
         miscdata = self.db.getMiscRecords()
         miscdataColumns = self.db.getMiscColumnNames()
         miscdf = pd.DataFrame(miscdata,columns= miscdataColumns)
         miscdf.name = 'Miscellaneous Expenses'
 
-        writer = pd.ExcelWriter('f:\\livestock ' + str(datetime.date(datetime.now())) + '.xlsx',engine='xlsxwriter')
+        incomedata = self.db.getIncomeRecords()
+        incomedataColumns = self.db.getIncomeColumnNames()
+        incomedf = pd.DataFrame(incomedata,columns= incomedataColumns)
+        incomedf.name = 'Income'
+
+        writer = pd.ExcelWriter('./' + str(datetime.date(datetime.now())) + '.xlsx',engine='xlsxwriter')
 
         goatdf.to_excel(writer, sheet_name=goatdf.name)
         kiddf.to_excel(writer, sheet_name=kiddf.name)
         livestockdf.to_excel(writer, sheet_name=livestockdf.name)
         labourdf.to_excel(writer, sheet_name=labourdf.name)
         feeddf.to_excel(writer, sheet_name=feeddf.name)
-        healthdf.to_excel(writer, sheet_name=healthdf.name)
         miscdf.to_excel(writer, sheet_name=miscdf.name)
+        incomedf.to_excel(writer, sheet_name=incomedf.name)
 
         writer.save()
+        self.showSuccess()
 
+    def showSuccess(self):
+        tk.messagebox.showinfo("Success","Successfully Generated")
 
