@@ -34,29 +34,34 @@ def vp_start_gui():
     '''Starting point when module is the main routine.'''
     global val, w, root
     root = tk.Tk()
-    top = Toplevel1 (root)
+    top = Toplevel1(root)
     view_support.init(root, top)
     root.mainloop()
 
+
 w = None
+
+
 def create_Toplevel1(rt, *args, **kwargs):
     '''Starting point when module is imported by another module.
        Correct form of call: 'create_Toplevel1(root, *args, **kwargs)' .'''
     global w, w_win, root
     #rt = root
     root = rt
-    w = tk.Toplevel (root)
+    w = tk.Toplevel(root)
 
     goatData = args[0]
 
-    top = Toplevel1 (w, goatData)
+    top = Toplevel1(w, goatData)
     view_support.init(w, top, *args, **kwargs)
     return (w, top)
+
 
 def destroy_Toplevel1():
     global w
     w.destroy()
     w = None
+
 
 class Toplevel1:
     def __init__(self, top=None, goatData=[]):
@@ -64,9 +69,9 @@ class Toplevel1:
            top is the toplevel containing window.'''
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
         _fgcolor = '#000000'  # X11 color: 'black'
-        _compcolor = '#d9d9d9' # X11 color: 'gray85'
-        _ana1color = '#d9d9d9' # X11 color: 'gray85'
-        _ana2color = '#ececec' # Closest X11 color: 'gray92'
+        _compcolor = '#d9d9d9'  # X11 color: 'gray85'
+        _ana1color = '#d9d9d9'  # X11 color: 'gray85'
+        _ana2color = '#ececec'  # Closest X11 color: 'gray92'
         font10 = "-family {Segoe UI} -size 13"
         font12 = "-family {Segoe UI} -size 16 -weight bold"
         font13 = "-family {Segoe UI Semibold} -size 13 -weight bold"
@@ -80,11 +85,11 @@ class Toplevel1:
         top.configure(background="#d9d9d9")
         top.configure(highlightbackground="#d9d9d9")
         top.configure(highlightcolor="black")
-        
+
         self.goatData = goatData
         self.db = DataBase()
 
-        self.Button0 = tk.Button(top, command = destroy_Toplevel1)
+        self.Button0 = tk.Button(top, command=destroy_Toplevel1)
         self.Button0.place(x=10, y=8, height=33, width=56)
         self.Button0.configure(activebackground="#ececec")
         self.Button0.configure(activeforeground="#000000")
@@ -114,7 +119,7 @@ class Toplevel1:
         self.Label2.configure(activeforeground="black")
         self.Label2.configure(background="#d9d9d9")
         self.Label2.configure(disabledforeground="#a3a3a3")
-        self.Label2.configure(font=("font10",10))
+        self.Label2.configure(font=("font10", 10))
         self.Label2.configure(foreground="#000000")
         self.Label2.configure(highlightbackground="#d9d9d9")
         self.Label2.configure(highlightcolor="black")
@@ -126,7 +131,7 @@ class Toplevel1:
         self.Label2_1.configure(activeforeground="black")
         self.Label2_1.configure(background="#d9d9d9")
         self.Label2_1.configure(disabledforeground="#a3a3a3")
-        self.Label2_1.configure(font=("font10",10))
+        self.Label2_1.configure(font=("font10", 10))
         self.Label2_1.configure(foreground="#000000")
         self.Label2_1.configure(highlightbackground="#d9d9d9")
         self.Label2_1.configure(highlightcolor="black")
@@ -138,7 +143,7 @@ class Toplevel1:
         self.Label2_2.configure(activeforeground="black")
         self.Label2_2.configure(background="#d9d9d9")
         self.Label2_2.configure(disabledforeground="#a3a3a3")
-        self.Label2_2.configure(font=("font10",10))
+        self.Label2_2.configure(font=("font10", 10))
         self.Label2_2.configure(foreground="#000000")
         self.Label2_2.configure(highlightbackground="#d9d9d9")
         self.Label2_2.configure(highlightcolor="black")
@@ -150,7 +155,7 @@ class Toplevel1:
         self.Label2_3.configure(activeforeground="black")
         self.Label2_3.configure(background="#d9d9d9")
         self.Label2_3.configure(disabledforeground="#a3a3a3")
-        self.Label2_3.configure(font=("font10",10))
+        self.Label2_3.configure(font=("font10", 10))
         self.Label2_3.configure(foreground="#000000")
         self.Label2_3.configure(highlightbackground="#d9d9d9")
         self.Label2_3.configure(highlightcolor="black")
@@ -169,7 +174,8 @@ class Toplevel1:
         self.Label2_4.configure(text='''Last Vaccinated Date''')
 
         self.Text1 = tk.Text(top)
-        self.Text1.place(relx=0.152, rely=0.025, relheight=0.036, relwidth=0.139)
+        self.Text1.place(relx=0.152, rely=0.025,
+                         relheight=0.036, relwidth=0.139)
         self.Text1.configure(background="white")
         self.Text1.configure(font="TkTextFont")
         self.Text1.configure(foreground="black")
@@ -181,8 +187,8 @@ class Toplevel1:
         self.Text1.configure(wrap="word")
 
         self.Text1_12 = tk.Text(top)
-        self.Text1_12.place(relx=0.152, rely=0.080, relheight=0.036
-                , relwidth=0.139)
+        self.Text1_12.place(relx=0.152, rely=0.080,
+                            relheight=0.036, relwidth=0.139)
         self.Text1_12.configure(background="white")
         self.Text1_12.configure(font="TkTextFont")
         self.Text1_12.configure(foreground="black")
@@ -193,11 +199,11 @@ class Toplevel1:
         self.Text1_12.configure(selectforeground="black")
         self.Text1_12.configure(wrap="word")
 
-        self.Text1_12.insert(END, self.goatData[4])
+        self.Text1_12.insert(END, self.goatData[1])
 
         self.Text1_13 = tk.Text(top)
-        self.Text1_13.place(relx=0.152, rely=0.137, relheight=0.035
-                , relwidth=0.139)
+        self.Text1_13.place(relx=0.152, rely=0.137,
+                            relheight=0.035, relwidth=0.139)
         self.Text1_13.configure(background="white")
         self.Text1_13.configure(font="TkTextFont")
         self.Text1_13.configure(foreground="black")
@@ -211,8 +217,8 @@ class Toplevel1:
         self.Text1_13.insert(END, self.goatData[2])
 
         self.Text1_14 = tk.Text(top)
-        self.Text1_14.place(relx=0.152, rely=0.190, relheight=0.035
-                , relwidth=0.139)
+        self.Text1_14.place(relx=0.152, rely=0.190,
+                            relheight=0.035, relwidth=0.139)
         self.Text1_14.configure(background="white")
         self.Text1_14.configure(font="TkTextFont")
         self.Text1_14.configure(foreground="black")
@@ -226,8 +232,8 @@ class Toplevel1:
         self.Text1_14.insert(END, self.goatData[3])
 
         self.Text1_15 = tk.Text(top)
-        self.Text1_15.place(relx=0.159, rely=0.405, relheight=0.036
-                , relwidth=0.139)
+        self.Text1_15.place(relx=0.159, rely=0.405,
+                            relheight=0.036, relwidth=0.139)
         self.Text1_15.configure(background="white")
         self.Text1_15.configure(font="TkTextFont")
         self.Text1_15.configure(foreground="black")
@@ -241,8 +247,8 @@ class Toplevel1:
         self.Text1_15.insert(END, self.goatData[11])
 
         self.Text1_16 = tk.Text(top)
-        self.Text1_16.place(relx=0.159, rely=0.475, relheight=0.036
-                , relwidth=0.139)
+        self.Text1_16.place(relx=0.159, rely=0.475,
+                            relheight=0.036, relwidth=0.139)
         self.Text1_16.configure(background="white")
         self.Text1_16.configure(font="TkTextFont")
         self.Text1_16.configure(foreground="black")
@@ -256,8 +262,8 @@ class Toplevel1:
         self.Text1_16.insert(END, self.goatData[12])
 
         self.Text1_17 = tk.Text(top)
-        self.Text1_17.place(relx=0.159, rely=0.540, relheight=0.036
-                , relwidth=0.139)
+        self.Text1_17.place(relx=0.159, rely=0.540,
+                            relheight=0.036, relwidth=0.139)
         self.Text1_17.configure(background="white")
         self.Text1_17.configure(font="TkTextFont")
         self.Text1_17.configure(foreground="black")
@@ -271,8 +277,8 @@ class Toplevel1:
         self.Text1_17.insert(END, self.goatData[13])
 
         self.Text1_18 = tk.Text(top)
-        self.Text1_18.place(relx=0.159, rely=0.600, relheight=0.036
-                , relwidth=0.139)
+        self.Text1_18.place(relx=0.159, rely=0.600,
+                            relheight=0.036, relwidth=0.139)
         self.Text1_18.configure(background="white")
         self.Text1_18.configure(font="TkTextFont")
         self.Text1_18.configure(foreground="black")
@@ -286,8 +292,8 @@ class Toplevel1:
         self.Text1_18.insert(END, self.goatData[14])
 
         self.Text1_19 = tk.Text(top)
-        self.Text1_19.place(relx=0.159, rely=0.665, relheight=0.036
-                , relwidth=0.139)
+        self.Text1_19.place(relx=0.159, rely=0.665,
+                            relheight=0.036, relwidth=0.139)
         self.Text1_19.configure(background="white")
         self.Text1_19.configure(font="TkTextFont")
         self.Text1_19.configure(foreground="black")
@@ -301,8 +307,8 @@ class Toplevel1:
         self.Text1_19.insert(END, self.goatData[15])
 
         self.Text1_20 = tk.Text(top)
-        self.Text1_20.place(relx=0.159, rely=0.730, relheight=0.036
-                , relwidth=0.139)
+        self.Text1_20.place(relx=0.159, rely=0.730,
+                            relheight=0.036, relwidth=0.139)
         self.Text1_20.configure(background="white")
         self.Text1_20.configure(font="TkTextFont")
         self.Text1_20.configure(foreground="black")
@@ -315,8 +321,8 @@ class Toplevel1:
         self.Text1_20.insert(END, self.goatData[16])
 
         self.Text205 = tk.Text(top)
-        self.Text205.place(relx=0.159, rely=0.800, relheight=0.036
-                , relwidth=0.139)
+        self.Text205.place(relx=0.159, rely=0.800,
+                           relheight=0.036, relwidth=0.139)
         self.Text205.configure(background="white")
         self.Text205.configure(font="TkTextFont")
         self.Text205.configure(foreground="black")
@@ -329,8 +335,8 @@ class Toplevel1:
         self.Text205.insert(END, self.goatData[17])
 
         self.Text305 = tk.Text(top)
-        self.Text305.place(relx=0.159, rely=0.865, relheight=0.036
-                , relwidth=0.139)
+        self.Text305.place(relx=0.159, rely=0.865,
+                           relheight=0.036, relwidth=0.139)
         self.Text305.configure(background="white")
         self.Text305.configure(font="TkTextFont")
         self.Text305.configure(foreground="black")
@@ -343,8 +349,8 @@ class Toplevel1:
         self.Text305.insert(END, self.goatData[18])
 
         self.Canvas1 = tk.Text(top)
-        self.Canvas1.place(relx=0.159, rely=0.927, relheight=0.049
-                , relwidth=0.138)
+        self.Canvas1.place(relx=0.159, rely=0.927,
+                           relheight=0.049, relwidth=0.138)
         self.Canvas1.configure(background="white")
         self.Canvas1.configure(font="TkTextFont")
         self.Canvas1.configure(foreground="black")
@@ -356,7 +362,8 @@ class Toplevel1:
         self.Canvas1.configure(wrap="word")
 
         self.Frame2 = tk.Frame(top)
-        self.Frame2.place(relx=0.599, rely=0.075, relheight=0.92, relwidth=0.39)
+        self.Frame2.place(relx=0.599, rely=0.075,
+                          relheight=0.92, relwidth=0.39)
         self.Frame2.configure(relief='groove')
         self.Frame2.configure(borderwidth="2")
         self.Frame2.configure(relief="groove")
@@ -377,7 +384,8 @@ class Toplevel1:
         self.Label2_00.configure(text='''Pregnant''')
 
         self.Canvas2 = tk.Text(self.Frame2)
-        self.Canvas2.place(relx=0.469, rely=0.066, relheight=0.055, relwidth=0.346)
+        self.Canvas2.place(relx=0.469, rely=0.066,
+                           relheight=0.055, relwidth=0.346)
         self.Canvas2.configure(background="white")
         self.Canvas2.configure(font="TkTextFont")
         self.Canvas2.configure(foreground="black")
@@ -413,7 +421,8 @@ class Toplevel1:
         self.Label2_8.configure(text='''No of Male Kids''')
 
         self.Text2_9 = tk.Text(self.Frame2)
-        self.Text2_9.place(relx=0.469, rely=0.25, relheight=0.055, relwidth=0.346)
+        self.Text2_9.place(relx=0.469, rely=0.25,
+                           relheight=0.055, relwidth=0.346)
         self.Text2_9.configure(background="white")
         self.Text2_9.configure(font="TkTextFont")
         self.Text2_9.configure(foreground="black")
@@ -438,7 +447,8 @@ class Toplevel1:
         self.Label2_6.configure(text='''No of Female Kids''')
 
         self.Text2 = tk.Text(self.Frame2)
-        self.Text2.place(relx=0.469, rely=0.35, relheight=0.055, relwidth=0.346)
+        self.Text2.place(relx=0.469, rely=0.35,
+                         relheight=0.055, relwidth=0.346)
         self.Text2.configure(background="white")
         self.Text2.configure(font="TkTextFont")
         self.Text2.configure(foreground="black")
@@ -451,19 +461,20 @@ class Toplevel1:
         self.Text2.insert(END, self.goatData[9])
 
         self.Frame3 = tk.Frame(self.Frame2)
-        self.Frame3.place(relx=0.234, rely=0.525, relheight=0.442, relwidth=0.612)
+        self.Frame3.place(relx=0.234, rely=0.525,
+                          relheight=0.442, relwidth=0.612)
         self.Frame3.configure(relief='groove')
         self.Frame3.configure(borderwidth="2")
         self.Frame3.configure(relief="groove")
         self.Frame3.configure(background="#d9d9d9")
-        
+
         self.tree3 = ttk.Treeview(self.Frame3)
-        self.tree3.place(relx=0.00,rely=0.00,height=300,width=310)
+        self.tree3.place(relx=0.00, rely=0.00, height=300, width=310)
         self.tree3["columns"] = ("#0", "#1", "#2", "#3")
-        self.tree3.column("#0", width=50,stretch=True,anchor='center')
-        self.tree3.column("#1", width=80,stretch=True,anchor='center')
-        self.tree3.column("#2", width=80,stretch=True,anchor='center')
-        self.tree3.column("#3", width=80,stretch=True,anchor='center')
+        self.tree3.column("#0", width=50, stretch=True, anchor='center')
+        self.tree3.column("#1", width=80, stretch=True, anchor='center')
+        self.tree3.column("#2", width=80, stretch=True, anchor='center')
+        self.tree3.column("#3", width=80, stretch=True, anchor='center')
         self.tree3.heading("#0", text="S.NO")
         self.tree3.heading("#1", text="MOTHER ID")
         self.tree3.heading("#2", text="KID ID")
@@ -475,7 +486,7 @@ class Toplevel1:
         self.Label2_1.configure(activeforeground="black")
         self.Label2_1.configure(background="#d9d9d9")
         self.Label2_1.configure(disabledforeground="#a3a3a3")
-        self.Label2_1.configure(font=("font10",10))
+        self.Label2_1.configure(font=("font10", 10))
         self.Label2_1.configure(foreground="#000000")
         self.Label2_1.configure(highlightbackground="#d9d9d9")
         self.Label2_1.configure(highlightcolor="black")
@@ -487,7 +498,7 @@ class Toplevel1:
         self.Label2_2.configure(activeforeground="black")
         self.Label2_2.configure(background="#d9d9d9")
         self.Label2_2.configure(disabledforeground="#a3a3a3")
-        self.Label2_2.configure(font=("font10",10))
+        self.Label2_2.configure(font=("font10", 10))
         self.Label2_2.configure(foreground="#000000")
         self.Label2_2.configure(highlightbackground="#d9d9d9")
         self.Label2_2.configure(highlightcolor="black")
@@ -499,7 +510,7 @@ class Toplevel1:
         self.Label2_3.configure(activeforeground="black")
         self.Label2_3.configure(background="#d9d9d9")
         self.Label2_3.configure(disabledforeground="#a3a3a3")
-        self.Label2_3.configure(font=("font10",10))
+        self.Label2_3.configure(font=("font10", 10))
         self.Label2_3.configure(foreground="#000000")
         self.Label2_3.configure(highlightbackground="#d9d9d9")
         self.Label2_3.configure(highlightcolor="black")
@@ -511,7 +522,7 @@ class Toplevel1:
         self.Label2_5.configure(activeforeground="black")
         self.Label2_5.configure(background="#d9d9d9")
         self.Label2_5.configure(disabledforeground="#a3a3a3")
-        self.Label2_5.configure(font=("font10",10))
+        self.Label2_5.configure(font=("font10", 10))
         self.Label2_5.configure(foreground="#000000")
         self.Label2_5.configure(highlightbackground="#d9d9d9")
         self.Label2_5.configure(highlightcolor="black")
@@ -523,7 +534,7 @@ class Toplevel1:
         self.Label2_5.configure(activeforeground="black")
         self.Label2_5.configure(background="#d9d9d9")
         self.Label2_5.configure(disabledforeground="#a3a3a3")
-        self.Label2_5.configure(font=("font10",10))
+        self.Label2_5.configure(font=("font10", 10))
         self.Label2_5.configure(foreground="#000000")
         self.Label2_5.configure(highlightbackground="#d9d9d9")
         self.Label2_5.configure(highlightcolor="black")
@@ -535,7 +546,7 @@ class Toplevel1:
         self.Label2_5.configure(activeforeground="black")
         self.Label2_5.configure(background="#d9d9d9")
         self.Label2_5.configure(disabledforeground="#a3a3a3")
-        self.Label2_5.configure(font=("font10",10))
+        self.Label2_5.configure(font=("font10", 10))
         self.Label2_5.configure(foreground="#000000")
         self.Label2_5.configure(highlightbackground="#d9d9d9")
         self.Label2_5.configure(highlightcolor="black")
@@ -547,7 +558,7 @@ class Toplevel1:
         self.label205.configure(activeforeground="black")
         self.label205.configure(background="#d9d9d9")
         self.label205.configure(disabledforeground="#a3a3a3")
-        self.label205.configure(font=("font10",10))
+        self.label205.configure(font=("font10", 10))
         self.label205.configure(foreground="#000000")
         self.label205.configure(highlightbackground="#d9d9d9")
         self.label205.configure(highlightcolor="black")
@@ -559,7 +570,7 @@ class Toplevel1:
         self.label305.configure(activeforeground="black")
         self.label305.configure(background="#d9d9d9")
         self.label305.configure(disabledforeground="#a3a3a3")
-        self.label305.configure(font=("font10",10))
+        self.label305.configure(font=("font10", 10))
         self.label305.configure(foreground="#000000")
         self.label305.configure(highlightbackground="#d9d9d9")
         self.label305.configure(highlightcolor="black")
@@ -583,15 +594,15 @@ class Toplevel1:
         self.Label2_5.configure(activeforeground="black")
         self.Label2_5.configure(background="#d9d9d9")
         self.Label2_5.configure(disabledforeground="#a3a3a3")
-        self.Label2_5.configure(font=("font10",10))
+        self.Label2_5.configure(font=("font10", 10))
         self.Label2_5.configure(foreground="#000000")
         self.Label2_5.configure(highlightbackground="#d9d9d9")
         self.Label2_5.configure(highlightcolor="black")
         self.Label2_5.configure(text='''Weight''')
 
         self.Text1_5 = tk.Text(top)
-        self.Text1_5.place(relx=0.152, rely=0.250, relheight=0.036
-                , relwidth=0.139)
+        self.Text1_5.place(relx=0.152, rely=0.250,
+                           relheight=0.036, relwidth=0.139)
         self.Text1_5.configure(background="white")
         self.Text1_5.configure(font="TkTextFont")
         self.Text1_5.configure(foreground="black")
@@ -620,7 +631,8 @@ class Toplevel1:
         counter = 0
 
         self.Frame1 = tk.Frame(top)
-        self.Frame1.place(relx=0.325, rely=0.512, relheight=0.45, relwidth=0.237)
+        self.Frame1.place(relx=0.325, rely=0.512,
+                          relheight=0.45, relwidth=0.237)
         self.Frame1.configure(relief='groove')
         self.Frame1.configure(borderwidth="2")
         self.Frame1.configure(relief="groove")
@@ -631,23 +643,24 @@ class Toplevel1:
         # Weight graph
         data1 = self.db.getWeightRecords(goatData[0])
         dataColumns1 = self.db.getWeightColumnNames(goatData[0])
-        df = pd.DataFrame(data1,columns=dataColumns1)
+        df = pd.DataFrame(data1, columns=dataColumns1)
 
-        figure = plt.Figure(figsize=(6,7), dpi=50)
+        figure = plt.Figure(figsize=(6, 7), dpi=50)
         ax1 = figure.add_subplot(111)
         line2 = FigureCanvasTkAgg(figure, self.Frame1)
-        line2.get_tk_widget().pack(side=tk.LEFT, fill=tk.NONE,padx=2)
-        df.plot(kind='line',legend= True, ax=ax1, color='r',marker='o', fontsize=15)
-        ax1.set_title('Chart of Growth') 
+        line2.get_tk_widget().pack(side=tk.LEFT, fill=tk.NONE, padx=2)
+        df.plot(kind='line', legend=True, ax=ax1,
+                color='r', marker='o', fontsize=15)
+        ax1.set_title('Chart of Growth')
         ax1.set_xlabel('Date_checked')
         ax1.set_xticks(np.arange(df.shape[0]) + 0.5, minor=False)
-        ax1.set_xticklabels(df.date_checked, rotation = 45, fontsize = 10)
+        ax1.set_xticklabels(df.date_checked, rotation=45, fontsize=10)
 
     def populateTree(self):
-        self.rowData = self.db.getKidsTableData(self.goatData[0])       
+        self.rowData = self.db.getKidsTableData(self.goatData[0])
         for i in range(0, len(self.rowData)):
             self.tree3.insert("", END, text=i+1, values=list(self.rowData[i]))
-        
+
     def forget(self, widget1, widget2, widget3, widget4, widget5, widget6, widget7):
         widget1.place_forget()
         widget2.place_forget()
@@ -656,7 +669,3 @@ class Toplevel1:
         widget5.place_forget()
         widget6.place_forget()
         widget7.place_forget()
-     
-
-
-

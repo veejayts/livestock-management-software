@@ -486,6 +486,7 @@ class Toplevel1:
                 self.tree8.insert("", END, text="", values=self.breedReadyGoats[i])
 
     def setVaccinated(self, vacc_no):
+        print('vacc_no ' + str(vacc_no))
         self.db.vaccinateGoats(vacc_no)
 
 # The following code is added to facilitate the Scrolled widgets you specified.

@@ -3,11 +3,11 @@
 block_cipher = None
 
 
-a = Analysis(['home.py'],
-             pathex=['C:\\Users\\tsvij\\Desktop\\Vijay\\Projects\\Python\\goat\\Livestock-Mangement-System-master'],
+a = Analysis(['Home.py'],
+             pathex=['D:\\bruh\\git\\python\\livestock-management-software\\Livestock-Mangement-System-master'],
              binaries=[],
              datas=[],
-             hiddenimports=['babel.numbers'],
+             hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
              excludes=[],
@@ -23,11 +23,11 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='home',
+          name='Home',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
           upx_exclude=[],
           runtime_tmpdir=None,
-          console=True )
+          console=False )
