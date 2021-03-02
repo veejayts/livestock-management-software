@@ -1,8 +1,3 @@
-# Version: 2.3
-# Author: Miguel Martinez Lopez
-# Uncomment the next line to see my email
-# print("Author's email: %s"%"61706c69636163696f6e616d656469646140676d61696c2e636f6d".decode("hex"))
-
 from backend import DataBase
 from tkinter import Menu
 import updateGoat

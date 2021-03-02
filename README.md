@@ -4,4 +4,4 @@ Live stock management software for goat herders to manage their livestock and al
 
 ## BUILD INSTRUCTIONS
 
-`pyinstaller --onefile --no-console Home.py`
+`pyinstaller --onefile --no-console Home.py --hidden-import babel.numbers`
